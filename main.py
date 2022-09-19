@@ -3,7 +3,6 @@ from utils.json_handler import read_json, write_json
 DATABASE_PATH = "menu.json"
 
 # Caso o arquivo JSON não exista, você deverá retornar uma lista vazia
-# Remover "content" do menu, descobrir como adicionar sem já existir uma chave
 
 if __name__ == "__main__":
     content = {

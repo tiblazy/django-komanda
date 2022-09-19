@@ -10,12 +10,21 @@ def read_json(database_path: str) -> dict:
         return database
     
 def write_json(database_path: str, content: dict):
-    database = read_json(database_path)
-    database["content"].append({"id": next_id(database_path), **content})
+    database = read_json(database_path)    
     
+    product_already_exists = [
+        product["name"]
+        for product in database
+        if product["name"] == content["name"]  
+    ]
+    
+    if product_already_exists:
+        return "Produto já inserido, insira um novo produto"
+    
+    database.append({"id": next_id(database_path), **content})
     with open(database_path, "w", encoding="utf8") as database_file:
         json.dump(database, database_file, ensure_ascii=True)
     
 def next_id(database_path: str) -> dict:
     database = read_json(database_path)
-    return len(database["content"]) + 1
+    return len(database) + 1
