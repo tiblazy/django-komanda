@@ -1,13 +1,16 @@
 import json
 
-def read_json(database_path: str) -> dict:    
-    with open(database_path, "r", encoding="utf8") as database_file:
-        database = json.load(database_file)    
+def read_json(database_path: str) -> dict:
+    try:
+        with open(database_path, "r", encoding="utf8") as database_file:
+            database = json.load(database_file)    
+            return database
         
-        if not database or len(database) == 0:
-            return []
-        
-        return database
+    except FileNotFoundError:
+        return []
+    
+    except:
+        return []
     
 def write_json(database_path: str, content: dict):
     database = read_json(database_path)    
