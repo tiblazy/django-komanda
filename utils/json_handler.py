@@ -15,14 +15,14 @@ def read_json(database_path: str) -> dict:
 def write_json(database_path: str, content: dict):
     database = read_json(database_path)    
     
-    product_already_exists = [
-        product["name"]
-        for product in database
-        if product["name"] == content["name"]  
-    ]
+    # product_already_exists = [
+    #     product["name"]
+    #     for product in database
+    #     if product["name"] == content["name"]  
+    # ]
     
-    if product_already_exists:
-        return "Produto já inserido, insira um novo produto"
+    # if product_already_exists:
+    #     return "Produto já inserido, insira um novo produto"
     
     database.append({"id": next_id(database_path), **content})
     with open(database_path, "w", encoding="utf8") as database_file:
