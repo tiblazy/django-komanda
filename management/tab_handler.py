@@ -1,4 +1,3 @@
-import re
 from utils.json_handler import read_json
 from datetime import datetime
 
@@ -13,7 +12,7 @@ def calculate_tab(table: dict):
             if product["id"] == item["id"]:
                 subtotal += item["price"] * product["amount"]
                 
-    local_format = "%d/%m/%y %H:%M:%S"
+    local_format = "%d/%m/%Y %H:%M:%S"
     date_now = datetime.now()
     created_at = date_now.strftime(local_format)        
         
